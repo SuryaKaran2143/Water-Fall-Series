@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ErrorChartMAUI.MainPage"
+             xmlns:model="clr-namespace:ErrorChartMAUI"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts">
+
+    <ContentPage.BindingContext>
+        <model:ViewModel></model:ViewModel>
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <chart:SfCartesianChart>
+
+            <!--Add Title to the Chart-->
+            <chart:SfCartesianChart.Title>
+                <Label />
+            </chart:SfCartesianChart.Title>
+
+            <!--Add X and Y Axis name to the Chart-->
+            <chart:SfCartesianChart.XAxes>
+                <chart:CategoryAxis >
+                    <chart:CategoryAxis.Title>
+                        <chart:ChartAxisTitle  />
+                    </chart:CategoryAxis.Title>
+                </chart:CategoryAxis>
+            </chart:SfCartesianChart.XAxes>
+            
+            <chart:SfCartesianChart.YAxes>
+                <chart:NumericalAxis >
+                    <chart:NumericalAxis.Title>
+                        <chart:ChartAxisTitle />
+                    </chart:NumericalAxis.Title>
+                </chart:NumericalAxis>
+            </chart:SfCartesianChart.YAxes>
+
+
+            <chart:WaterfallSeries 
+                ItemsSource="{Binding RevenueDetails}" 
+                SummaryBindingPath="IsSummary" 
+                SummarySegmentBrush="Blue"
+                NegativeSegmentBrush="Red"
+                XBindingPath="Category" 
+                YBindingPath="Value"
+               >
+                <chart:WaterfallSeries.SelectionBehavior>
+                    <chart:DataPointSelectionBehavior SelectionBrush="Pink"></chart:DataPointSelectionBehavior>
+                </chart:WaterfallSeries.SelectionBehavior>
+                
+            </chart:WaterfallSeries>
+                
+            
+        </chart:SfCartesianChart>
+    </Grid>
+</ContentPage>
